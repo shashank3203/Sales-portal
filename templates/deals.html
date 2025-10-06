@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Deals | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Deals</h1>
+  <div class="dashboard-boxes">
+    
+    <!-- Create New Deal Form -->
+    <div class="box">
+      <h3>Create New Deal</h3>
+      <form method="POST" action="{{ url_for('deals') }}">
+        <div class="form-row">
+          <div>
+            <label for="deal_name">Deal Name</label>
+            <input type="text" id="deal_name" name="deal_name" required>
+          </div>
+          <div>
+            <label for="account_name">Account Name</label>
+            <input type="text" id="account_name" name="account_name" required>
+          </div>
+          <div>
+            <label for="deal_stage">Deal Stage</label>
+            <select id="deal_stage" name="deal_stage" required>
+              <option value="Qualification">Qualification</option>
+              <option value="Proposal">Proposal</option>
+              <option value="Negotiation">Negotiation</option>
+            </select>
+          </div>
+          <div>
+            <label for="amount">Amount</label>
+            <input type="text" id="amount" name="amount" required>
+          </div>
+          <div>
+            <label for="close_date">Expected Close Date</label>
+            <input type="date" id="close_date" name="close_date" required>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- List of Deals -->
+    <div class="box">
+      <h3>Deal List</h3>
+      <p>Here you can view all the deals that you have created.</p>
+      <ul>
+        {% for deal in deals %}
+          <li>{{ deal.deal_name }} - {{ deal.account_name }} - &#8377;{{ deal.deal_amount }} - {{ deal.deal_stage }}</li>
+        {% else %}
+          <li>No deals available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

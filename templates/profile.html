@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Profile | WeConnect{% endblock %}
+
+{% block content %}
+<div class="dashboard-boxes profile-page">
+
+  <!-- Sidebar -->
+  <aside class="profile-sidebar">
+    <div class="default-user-icon">
+      <i class="fas fa-user-circle fa-6x"></i>
+    </div>
+    <ul class="sidebar-nav">
+      <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="{{ url_for('setup') }}"><i class="fas fa-user-plus"></i> Setup User</a></li>
+      <li><a href="{{ url_for('update_user') }}"><i class="fas fa-user-edit"></i> Update User</a></li>
+      <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <section class="profile-details">
+    <div class="box">
+      <h1>User Profile</h1>
+      <div class="profile-info-grid">
+        <div><strong>First Name:</strong> {{ user.first_name }}</div>
+        <div><strong>Last Name:</strong> {{ user.last_name }}</div>
+        <div><strong>Email:</strong> {{ user.email }}</div>
+        <div><strong>Role:</strong> {{ user.role }}</div>
+        <div><strong>Mobile:</strong> {{ user.mobile or "Not Provided" }}</div>
+        <div><strong>Address:</strong> {{ user.address or "Not Provided" }}</div>
+        <div><strong>User ID:</strong> {{ user.id }}</div>
+        <div><strong>Account Created:</strong> {{ user.created_at.strftime('%Y-%m-%d') if user.created_at else "N/A" }}</div>
+        <div><strong>Password:</strong> ******** (hidden)</div>
+      </div>
+
+      <div class="action-buttons">
+        <a href="{{ url_for('reset_password_request') }}" class="btn-reset-password">Update Password</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

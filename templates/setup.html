@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}CRM Setup | WeConnect{% endblock %}
+
+{% block content %}
+  <div class="page active">
+    <div class="section">
+      <h2>CRM Setup</h2>
+      <form method="POST" action="{{ url_for('setup') }}">
+        <div class="form-row">
+          <div>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+          </div>
+          <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </div>
+          <div>
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" required>
+          </div>
+          <div>
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" required>
+          </div>
+          <span></span>
+          <span></span>
+          <div class="user-box">
+            <label>Password</label>
+            <input type="password" name="password" required />
+          </div>
+          <div class="user-box">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required />
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+<div class="section">
+  <h2>Existing Users</h2>
+  {% if users %}
+    <div class="existing-user-grid">
+      {% for user in users %}
+        <div class="existing-user-card shine-effect">
+          <i class="fas fa-user-circle existing-user-icon"></i>
+          <div class="existing-user-name">{{ user.first_name }} {{ user.last_name }}</div>
+          <div class="existing-user-email">{{ user.email }}</div>
+          <div class="existing-user-role"><strong>Role:</strong> {{ user.role }}</div>
+          <div class="existing-user-mobile"><strong>Mobile:</strong> {{ user.mobile }}</div>
+          <div class="existing-user-address"><strong>Address:</strong> {{ user.address }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No users found.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Accounts | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Accounts</h1>
+  <div class="dashboard-boxes">
+    
+    <!-- Create New Account Form -->
+    <div class="box">
+      <h3>Create New Account</h3>
+      <form method="POST" action="{{ url_for('accounts') }}">
+        <div class="form-row">
+          <div>
+            <label for="account_name">Account Name</label>
+            <input type="text" id="account_name" name="account_name" required>
+          </div>
+          <div>
+            <label for="type">Type</label>
+            <select id="type" name="type" required>
+              <option value="Customer">Customer</option>
+              <option value="Partner">Partner</option>
+            </select>
+          </div>
+          <div>
+            <label for="billing_country">Billing Country</label>
+            <input type="text" id="billing_country" name="billing_country" required>
+          </div>
+          <div>
+            <label for="billing_state">Billing State</label>
+            <input type="text" id="billing_state" name="billing_state" required>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- List of Accounts -->
+    <div class="box">
+      <h3>Account List</h3>
+      <p>Here you can view all the accounts that you have created.</p>
+      <ul>
+        {% for account in accounts %}
+          <li>{{ account.account_name }} - {{ account.type }} - {{ account.billing_country }} - {{ account.billing_state }}</li>
+        {% else %}
+          <li>No accounts available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+{% endblock %}

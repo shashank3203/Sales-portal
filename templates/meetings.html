@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Meetings | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Meetings</h1>
+  <div class="dashboard-boxes">
+    <!-- Create New Meeting Form -->
+    <div class="box">
+      <h3>Schedule New Meeting</h3>
+      <form method="POST" action="{{ url_for('meetings') }}">
+        <div class="form-row">
+          <div>
+            <label for="meeting_title">Meeting Title</label>
+            <input type="text" id="meeting_title" name="meeting_title" required>
+          </div>
+          <div>
+            <label for="meeting_date">Date</label>
+            <input type="date" id="meeting_date" name="meeting_date" required>
+          </div>
+          <div>
+            <label for="meeting_time">Time</label>
+            <input type="time" id="meeting_time" name="meeting_time" required>
+          </div>
+          <div>
+            <label for="attendees">Attendees</label>
+            <input type="text" id="attendees" name="attendees" placeholder="Comma separated emails" required>
+          </div>
+        </div>
+        <button type="submit">Schedule Meeting</button>
+      </form>
+    </div>
+
+    <!-- Meetings List -->
+    <div class="box">
+      <h3>Upcoming Meetings</h3>
+      <p>Here you can view and manage all the scheduled meetings.</p>
+      <ul>
+        {% for meeting in meetings %}
+          <li>
+            <strong>Meeting Title:</strong> {{ meeting.meeting_title }} - 
+            <strong>Date:</strong> {{ meeting.meeting_date }} - 
+            <strong>Time:</strong> {{ meeting.meeting_time }} - 
+            <strong>Attendees:</strong> {{ meeting.attendees | join(', ') }}
+          </li>
+        {% else %}
+          <li>No meetings scheduled.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

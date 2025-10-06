@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Leads | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Leads</h1>
+  <div class="dashboard-boxes">
+    
+    <!-- Create New Lead Section -->
+    <div class="box">
+      <h3>Create New Lead</h3>
+      <form method="POST" action="{{ url_for('leads') }}">
+        <div class="form-row">
+          <div>
+            <label for="lead_owner">Lead Owner</label>
+            <input type="text" id="lead_owner" name="lead_owner" required>
+          </div>
+          <div>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+          </div>
+          <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" required>
+          </div>
+          <div>
+            <label for="lead_source">Lead Source</label>
+            <select id="lead_source" name="lead_source">
+              <option>Website</option>
+              <option>Referral</option>
+              <option>Social Media</option>
+              <option>Event</option>
+            </select>
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status" name="status">
+              <option>New</option>
+              <option>Qualified</option>
+              <option>Contacted</option>
+              <option>Closed</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- Lead List Section -->
+    <div class="box">
+      <h3>Lead List</h3>
+      <p>Here you can view all the leads that you have created.</p>
+      <ul>
+        {% for lead in leads %}
+          <li>{{ lead.lead_first_name }} {{ lead.lead_last_name }} - {{ lead.lead_email }} - {{ lead.lead_phone }} - {{ lead.lead_status }}</li>
+        {% else %}
+          <li>No leads available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

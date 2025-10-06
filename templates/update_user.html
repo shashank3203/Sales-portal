@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Update User{% endblock %}
+{% block content %}
+
+<h1>Update User</h1>
+
+<!-- Search Form -->
+<div class="section">
+  <form method="POST" action="{{ url_for('update_user') }}" class="search-form">
+    <label for="search_email">Search by Email</label>
+    <input type="email" name="search_email" id="search_email" placeholder="Enter email to search" required>
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<!-- User Cards Section -->
+<div class="user-grid">
+  {% if search_email and found_user %}
+    <!-- Show only the searched user -->
+    <a class="user-card" href="{{ url_for('edit_user', user_id=found_user.id) }}">
+      <i class="fas fa-user-circle user-icon"></i>
+      <div class="user-name">{{ found_user.first_name }} {{ found_user.last_name }}</div>
+      <div class="user-email">{{ found_user.email }}</div>
+    </a>
+  {% else %}
+    <!-- Show all users -->
+    {% for user in all_users %}
+    <a class="user-card" href="{{ url_for('edit_user', user_id=user.id) }}">
+      <i class="fas fa-user-circle user-icon"></i>
+      <div class="user-name">{{ user.first_name }} {{ user.last_name }}</div>
+      <div class="user-email">{{ user.email }}</div>
+    </a>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

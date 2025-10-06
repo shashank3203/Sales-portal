@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Calls | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Calls</h1>
+  <div class="dashboard-boxes">
+    <!-- Create New Call Log Form -->
+    <div class="box">
+      <h3>Log New Call</h3>
+      <form method="POST" action="{{ url_for('calls') }}">
+        <div class="form-row">
+          <div>
+            <label for="caller_name">Caller Name</label>
+            <input type="text" id="caller_name" name="caller_name" required>
+          </div>
+          <div>
+            <label for="call_type">Call Type</label>
+            <select id="call_type" name="call_type" required>
+              <option value="incoming">Incoming</option>
+              <option value="outgoing">Outgoing</option>
+            </select>
+          </div>
+          <div>
+            <label for="call_duration">Duration (Minutes)</label>
+            <input type="number" id="call_duration" name="call_duration" required min="1">
+          </div>
+          <div>
+            <label for="call_notes">Notes</label>
+            <textarea id="call_notes" name="call_notes" rows="4"></textarea>
+          </div>
+        </div>
+        <button type="submit">Log Call</button>
+      </form>
+    </div>
+
+    <!-- Calls List -->
+    <div class="box">
+      <h3>Call Logs</h3>
+      <p>Here you can view all the calls that have been logged.</p>
+      <ul>
+        {% for call in calls %}
+          <li>
+            <strong>Caller:</strong> {{ call.caller_name }} - 
+            <strong>Type:</strong> {{ call.call_type }} - 
+            <strong>Duration:</strong> {{ call.call_duration }} mins - 
+            <strong>Notes:</strong> {{ call.call_notes }}
+          </li>
+        {% else %}
+          <li>No calls logged yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

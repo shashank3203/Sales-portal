@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}WeConnect{% endblock %}</title>
+
+  <!-- FontAwesome for the settings icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+  <link id="themeStylesheet" href="{{ url_for('static', filename='css/light-theme.css') }}" rel="stylesheet" />
+
+</head>
+<body>
+  <header>WeConnect</header>
+
+  <!-- Settings Icon with Dropdown -->
+  <div class="settings-dropdown" id="settingsDropdown">
+    <button id="settingsToggle" class="settings-icon" type="button">
+      <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+    </button>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Profile</a>
+      <a href="{{ url_for('setup') }}"><i class="fas fa-user-cog"></i> Setup User</a>
+      <a href="{{ url_for('update_user') }}"><i class="fas fa-user-edit"></i> Update User</a>
+      <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+
+  <nav>
+    <a href="{{ url_for('home') }}" class="tab-btn {% if active_tab == 'home' %}active{% endif %}">Home</a>
+    <a href="{{ url_for('contacts') }}" class="tab-btn {% if active_tab == 'contacts' %}active{% endif %}">Contacts</a>
+    <a href="{{ url_for('leads') }}" class="tab-btn {% if active_tab == 'leads' %}active{% endif %}">Leads</a>
+    <a href="{{ url_for('deals') }}" class="tab-btn {% if active_tab == 'deals' %}active{% endif %}">Deals</a>
+    <a href="{{ url_for('accounts') }}" class="tab-btn {% if active_tab == 'accounts' %}active{% endif %}">Accounts</a>
+    <a href="{{ url_for('tasks') }}" class="tab-btn {% if active_tab == 'tasks' %}active{% endif %}">Tasks</a>
+    <a href="{{ url_for('meetings') }}" class="tab-btn {% if active_tab == 'meetings' %}active{% endif %}">Meetings</a>
+    <a href="{{ url_for('reports') }}" class="tab-btn {% if active_tab == 'reports' %}active{% endif %}">Reports</a>
+    <a href="{{ url_for('calls') }}" class="tab-btn {% if active_tab == 'calls' %}active{% endif %}">Calls</a>
+    <a href="{{ url_for('projects') }}" class="tab-btn {% if active_tab == 'projects' %}active{% endif %}">Projects</a>
+  </nav>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+
+  <div class="page">
+    {% block content %}{% endblock %}
+  </div>
+
+<script src="{{ url_for('static', filename='js/dropdown.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+header {
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+nav {
+  background: #2c2c2c;
+}
+
+nav button,
+nav a.tab-btn {
+  color: #e0e0e0;
+}
+
+nav button:hover,
+nav button.active,
+nav a.tab-btn:hover,
+nav a.tab-btn.active {
+  background: #03dac6;
+}
+
+.settings-dropdown .settings-icon {
+  color: #fff;
+}
+
+.dropdown-menu {
+  background-color: #1f1f1f;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-menu a {
+  color: #e0e0e0;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.page {
+  background: #121212;
+}
+
+h1, h2 {
+  color: #ffffff;
+  border-color: #03dac6;
+}
+
+.section {
+  background: #1f1f1f;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-boxes .box {
+  background: #1f1f1f;
+  border-left-color: #03dac6;
+}
+
+.box h3 {
+  color: #ffffff;
+}
+
+.box p {
+  color: #aaa;
+}
+
+.form-row label {
+  color: #dddddd;
+}
+
+input,
+select,
+textarea {
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #03dac6;
+  box-shadow: 0 0 8px rgba(3, 218, 198, 0.6);
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #03dac6 0%, #018786 100%);
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #018786 0%, #03dac6 100%);
+}
+
+.flash-message.success {
+  background-color: #27422c;
+  color: #81c784;
+  border-left-color: #28a745;
+}
+
+.flash-message.error {
+  background-color: #4a2a2a;
+  color: #e57373;
+  border-left-color: #dc3545;
+}
+
+.flash-message.info {
+  background-color: #1e3a44;
+  color: #4dd0e1;
+  border-left-color: #17a2b8;
+}
+
+.flash-message.danger {
+  background-color: #4f442a;
+  color: #ffc107;
+  border-left-color: #ffc107;
+}
+
+.user-card {
+  background-color: #222;
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.user-card:hover {
+  background-color: #03dac6;
+  color: #000;
+}
+
+.user-icon {
+  color: #03dac6;
+}
+
+.search-form label {
+  color: #eee;
+}
+
+.search-form input[type="email"] {
+  background-color: #2b2b2b;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.search-form input[type="email"]:focus {
+  border-color: #03dac6;
+  box-shadow: 0 0 8px rgba(3, 218, 198, 0.6);
+}
+
+.search-form button {
+  background-color: #03dac6;
+  color: #000;
+}
+
+.search-form button:hover {
+  background-color: #26ffe1;
+}
+
+.existing-user-card {
+  background-color: #222;
+  color: #e0e0e0;
+  border: 1px solid #03dac6;
+}
+
+.existing-user-icon {
+  color: #03dac6;
+}
+
+/* Shimmer remains unchanged */
+.shine-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-25deg);
+  animation: shimmer 2.5s infinite;
+}
+
+/* Form rows and buttons reused from light version */
+.form-row input,
+.form-row select {
+  background-color: #2b2b2b;
+  border: 2px solid #444;
+  color: #e0e0e0;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-color: #03dac6;
+  box-shadow: 0 0 8px rgba(3, 218, 198, 0.7);
+  background-color: #1f1f1f;
+}
+
+button[type="submit"] {
+  background: linear-gradient(135deg, #03dac6 0%, #018786 100%);
+  box-shadow: 0 5px 15px rgba(3, 218, 198, 0.3);
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #018786 0%, #03dac6 100%);
+  box-shadow: 0 8px 20px rgba(3, 218, 198, 0.6);
+}
+
+/* Responsive tweaks stay same */
+@media (max-width: 480px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row input,
+  .form-row select {
+    flex: unset;
+    width: 100%;
+  }
+}

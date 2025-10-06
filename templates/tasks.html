@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Tasks</h1>
+  <div class="dashboard-boxes">
+    <div class="box">
+      <h3>Create New Task</h3>
+      <form method="POST" action="{{ url_for('tasks') }}">
+        <div class="form-row">
+          <div>
+            <label for="task_name">Task Name</label>
+            <input type="text" id="task_name" name="task_name" required>
+          </div>
+          <div>
+            <label for="due_date">Due Date</label>
+            <input type="date" id="due_date" name="due_date" required>
+          </div>
+          <div>
+            <label for="assigned_to">Assigned To</label>
+            <input type="text" id="assigned_to" name="assigned_to" required>
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status" name="status" required>
+              <option value="not_started">Not Started</option>
+              <option value="in_progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="box">
+      <h3>Task List</h3>
+      <p>Here you can view all the tasks you have created.</p>
+      <ul>
+        {% for task in tasks %}
+          <li>
+            <strong>Task Name:</strong> {{ task.task_name }} - <strong>Due Date:</strong> {{ task.due_date }} - 
+            <strong>Status:</strong> {{ task.status }} - <strong>Assigned To:</strong> {{ task.assigned_to }}
+          </li>
+        {% else %}
+          <li>No tasks available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

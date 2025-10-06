@@ -1,0 +1,11 @@
+<div class="profile-sidebar-content">
+  <div class="profile-picture">
+    <img src="{{ url_for('static', filename='img/default-avatar.png') }}" alt="Profile Picture">
+  </div>
+  <ul class="sidebar-nav">
+    <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="{{ url_for('setup') }}"><i class="fas fa-user-cog"></i> Setup User</a></li>
+    <li><a href="{{ url_for('update_user') }}"><i class="fas fa-user-edit"></i> Update User</a></li>
+    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+  </ul>
+</div>

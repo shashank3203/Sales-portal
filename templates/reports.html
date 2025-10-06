@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Reports | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Reports</h1>
+  <div class="dashboard-boxes">
+    <!-- Create New Report Form -->
+    <div class="box">
+      <h3>Create New Report</h3>
+      <form method="POST" action="{{ url_for('reports') }}">
+        <div class="form-row">
+          <div>
+            <label for="report_title">Report Title</label>
+            <input type="text" id="report_title" name="report_title" required>
+          </div>
+          <div>
+            <label for="report_date_range">Date Range</label>
+            <input type="date" id="start_date" name="start_date" required>
+            to
+            <input type="date" id="end_date" name="end_date" required>
+          </div>
+          <div>
+            <label for="report_type">Report Type</label>
+            <select id="report_type" name="report_type">
+              <option value="performance">Performance</option>
+              <option value="sales">Sales</option>
+              <option value="customer">Customer Engagement</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit">Generate Report</button>
+      </form>
+    </div>
+
+    <!-- Reports List -->
+    <div class="box">
+      <h3>Generated Reports</h3>
+      <p>Here you can view all the generated reports.</p>
+      <ul>
+        {% for report in reports %}
+          <li>
+            <strong>Report Title:</strong> {{ report.report_title }} - 
+            <strong>Date Range:</strong> {{ report.start_date }} to {{ report.end_date }} - 
+            <strong>Type:</strong> {{ report.report_type }}
+          </li>
+        {% else %}
+          <li>No reports available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | WeConnect{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+  <div class="dashboard-boxes">
+    <!-- Create New Project Form -->
+    <div class="box">
+      <h3>Create New Project</h3>
+      <form method="POST" action="{{ url_for('projects') }}">
+        <div class="form-row">
+          <div>
+            <label for="project_name">Project Name</label>
+            <input type="text" id="project_name" name="project_name" required>
+          </div>
+          <div>
+            <label for="project_status">Project Status</label>
+            <select id="project_status" name="project_status" required>
+              <option value="ongoing">Ongoing</option>
+              <option value="completed">Completed</option>
+              <option value="on_hold">On Hold</option>
+            </select>
+          </div>
+          <div>
+            <label for="project_due_date">Due Date</label>
+            <input type="date" id="project_due_date" name="project_due_date" required>
+          </div>
+          <div>
+            <label for="project_description">Description</label>
+            <textarea id="project_description" name="project_description" rows="4" required></textarea>
+          </div>
+        </div>
+        <button type="submit">Create Project</button>
+      </form>
+    </div>
+
+    <!-- Projects List -->
+    <div class="box">
+      <h3>Project List</h3>
+      <p>Here you can view all the ongoing and completed projects.</p>
+      <ul>
+        {% for project in projects %}
+          <li>
+            <strong>Project Name:</strong> {{ project.project_name }} - 
+            <strong>Status:</strong> {{ project.project_status }} - 
+            <strong>Due Date:</strong> {{ project.project_due_date }}
+          </li>
+        {% else %}
+          <li>No projects available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
