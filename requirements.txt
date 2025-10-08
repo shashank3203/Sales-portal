@@ -19,4 +19,4 @@ PyMySQL==1.1.2
 python-dotenv==1.1.1
 SQLAlchemy==2.0.43
 typing_extensions==4.15.0
-Werkzeug==3.0.3
+Werkzeug==3.1.0
