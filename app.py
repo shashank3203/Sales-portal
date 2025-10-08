@@ -6,10 +6,12 @@ from flask_mail import Mail, Message
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 from utils.token import generate_reset_token, verify_reset_token
 from models import db, User, Project, Calls, Report, Meeting, Task, Account, Deals, Lead, Contact
+import pymysql
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Necessary for sessions
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://sales:sales@localhost/user'  # Update the database URI accordingly
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql12801999:QGUhleQFBn@sql12.freesqldatabase.com:3306/sql12801999'  # Update the database URI accordingly
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy and Migrate
@@ -541,4 +543,4 @@ def projects():
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
