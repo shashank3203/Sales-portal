@@ -6,24 +6,27 @@ from flask_mail import Mail, Message
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 from utils.token import generate_reset_token, verify_reset_token
 from models import db, User, Project, Calls, Report, Meeting, Task, Account, Deals, Lead, Contact
+from dotenv import load_dotenv
 import pymysql
+import os
 pymysql.install_as_MySQLdb()
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Necessary for sessions
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://sql12801999:QGUhleQFBn@sql12.freesqldatabase.com:3306/sql12801999'  # Update the database URI accordingly
+app.secret_key = os.getenv('FLASK_SECRET_KEY')  # Necessary for sessions
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')  # Update the database URI accordingly
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy and Migrate
 db.init_app(app)
 migrate = Migrate(app, db)
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # or your provider
-app.config['MAIL_PORT'] = 587
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')  # or your provider
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'shashanktiwari3203@gmail.com'
-app.config['MAIL_PASSWORD'] = 'mtin wpwa wpty ikbj'  # never your real password!
-app.config['MAIL_DEFAULT_SENDER'] = 'tiwarishashank2580@gmail.com'
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # never your real password!
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
 
 mail = Mail(app)
 
